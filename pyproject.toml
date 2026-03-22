@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mbpc-improved"
+version = "1.0.0"
+description = "Enhanced version of MBPC (Much Better Python Classes) for advanced OOP in Python"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+    {name = "Pac-Dessert1436", email = "pac-dessert1436@example.com"}
+]
+maintainers = [
+    {name = "Pac-Dessert1436", email = "pac-dessert1436@example.com"}
+]
+keywords = [
+    "oop",
+    "object-oriented",
+    "classes",
+    "interfaces",
+    "structs",
+    "type-safe",
+    "decorators",
+    "inheritance",
+    "metaprogramming",
+    "code-generation"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities"
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "flake8>=5.0",
+    "black>=22.0",
+    "isort>=5.0",
+    "twine>=4.0",
+    "build>=0.7",
+    "mypy>=1.0"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Pac-Dessert1436/mbpc-improved"
+"Bug Reports" = "https://github.com/Pac-Dessert1436/mbpc-improved/issues"
+"Source" = "https://github.com/Pac-Dessert1436/mbpc-improved"
+"Documentation" = "https://github.com/Pac-Dessert1436/mbpc-improved#readme"
+"Changelog" = "https://github.com/Pac-Dessert1436/mbpc-improved/blob/main/CHANGELOG.md"
+"Repository" = "https://github.com/Pac-Dessert1436/mbpc-improved.git"
+
+[tool.setuptools]
+packages = ["mbpc"]
+
+[tool.setuptools.package-data]
+mbpc = ["*.py"]
+
+[tool.black]
+line-length = 100
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.mypy]
+python_version = "3.7"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false

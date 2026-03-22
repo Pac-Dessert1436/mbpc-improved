@@ -1,0 +1,4 @@
+dist/
+mbpc_improved.egg-info/
+.pypirc
+Guidelines.md
