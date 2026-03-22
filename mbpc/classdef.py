@@ -1,4 +1,5 @@
-from .utilities import InterfaceError, MbpcSelf
+from .utilities import MbpcSelf
+from .interfaces import InterfaceError
 from inspect import signature
 
 

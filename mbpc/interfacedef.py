@@ -1,4 +1,4 @@
-from .utilities import InterfaceError
+from .interfaces import InterfaceError
 from inspect import signature
 
 

@@ -221,7 +221,7 @@ print(student.age)   # Output: 20
 ```python
 from mbpc.interfacedef import interfacedef
 from mbpc.classdef import classdef
-from mbpc.interfaces import InterfaceError
+#from mbpc.interfaces import InterfaceError
 
 @interfacedef()
 def Countable(self):

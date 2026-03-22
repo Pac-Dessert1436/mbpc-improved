@@ -1,7 +1,3 @@
-class InterfaceError(Exception):
-    pass
-
-
 def MbpcSelf():
     def self(): pass
 

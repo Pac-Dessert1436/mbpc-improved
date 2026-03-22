@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mbpc-improved"
-version = "1.0.0"
+version = "1.0.1"
 description = "Enhanced version of MBPC (Much Better Python Classes) for advanced OOP in Python"
 readme = "README.md"
 requires-python = ">=3.7"
