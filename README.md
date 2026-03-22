@@ -1,8 +1,8 @@
 # `mbpc-improved`: Enhanced "Much Better Python Classes"
 
 > ⚠️ **Important Notice** ⚠️
-> - Versions 1.0.0 through 1.0.2 have been **permanently removed** from PyPI due to a documentation bug: The example code `from mbpc.interfaces import InterfaceError` was invalid, as `InterfaceError` was not properly exported. (Version 1.0.2 has already fixed this, but has a metadata bug like the wrong email address in `pyproject.toml`.)
-> - The `InterfaceError` class will not be exported in later versions, either. It is not recommended to use `InterfaceError` in your code. Please upgrade to **version 1.0.3 or later** for correct documentation and full functionality.
+> - Versions 1.0.0 through 1.0.3 have been **permanently removed** from PyPI due to trivial bugs, such as invalid example code in documentation and incorrect metadata in `pyproject.toml`.
+> - Please upgrade to **version 1.0.4 or later** for corrected documentation and improved functionality.
 
 ## Description
 
@@ -16,7 +16,7 @@
 - **Object Cloning**: Added `clone` method for deep copying objects.
 - **Enhanced Iterability**: Eliminated need for manual list conversion when iterating over interfaces.
 
-_Note: For built-in iterability, simply use Python's `reversed(...)` function._
+> **Note**: For built-in iterability, simply use Python's `reversed(...)` function.
 
 ## Installation
 
@@ -75,7 +75,7 @@ def Hashable(self):
 def Equatable(self):
     """Interface for objects that can be compared for equality."""
     @self.method
-    def equals(other) -> bool: ...  # Must return a boolean
+    def equals(object) -> bool: ...  # Must return a boolean
 
 # NOTE: Common interfaces like Hashable and Equatable are already available in `mbpc.interfaces`
 ```
@@ -97,17 +97,17 @@ def Point(self, x: int, y: int):
 
     # Implement Hashable interface
     @self.method
-    def hashcode(self) -> int:
+    def hashcode() -> int:
         """Generate a hash value for the point."""
         return hash((self.x, self.y))
 
     # Implement Equatable interface
     @self.method
-    def equals(self, other) -> bool:
+    def equals(object) -> bool:
         """Compare two points for equality."""
-        if not hasattr(other, 'x') or not hasattr(other, 'y'):
+        if not hasattr(object, 'x') or not hasattr(object, 'y'):
             return False
-        return self.x == other.x and self.y == other.y
+        return self.x == object.x and self.y == object.y
 
 # Example Usage:
 p1 = Point(2, 3)
@@ -124,7 +124,7 @@ print(p1.clone())         # Output: Point(x=2, y=3) (deep copy)
 
 ### 3. Defining Classes
 
-Classes support full object-oriented features including inheritance and interface implementation, but the parent constructor are always called first:
+Classes support full object-oriented features including inheritance and interface implementation. The parent constructor is always called first:
 
 ```python
 from mbpc.classdef import classdef
@@ -142,21 +142,21 @@ def Person(self, name: str, age: int):
 
     # Define instance methods
     @self.method
-    def greet(self) -> str:
+    def greet() -> str:
         """Return a greeting message."""
         return f"Hello, my name is {self.name}"
 
     # Implement Equatable interface
     @self.method
-    def equals(self, other) -> bool:
+    def equals(object) -> bool:
         """Compare two Person objects for equality."""
-        if not isinstance(other, Person):
+        if not isinstance(object, Person):
             return False
-        return self.name == other.name and self.age == other.age
+        return self.name == object.name and self.age == object.age
 
-    # Define to_string method (built-in method override)
+    # Define to_string method (overrides default behavior)
     @self.method
-    def to_string(self) -> str:
+    def to_string() -> str:
         """Return a string representation of the person."""
         return f"Person(name='{self.name}', age={self.age})"
 
@@ -178,7 +178,7 @@ Classes can inherit from other classes, overriding methods as needed:
 ```python
 from mbpc.classdef import classdef
 
-# Inherit from the Person class defined in the previous example
+# Inherit from the Person class defined above
 @classdef(Person)  # Specify the parent class
 def Student(self, name: str, age: int, major: str, student_id: str):
     """A Student class inheriting from Person."""
@@ -191,13 +191,13 @@ def Student(self, name: str, age: int, major: str, student_id: str):
 
     # Override the greet method from Person
     @self.method
-    def greet(self) -> str:
+    def greet() -> str:
         """Return a student-specific greeting."""
         return f"Hello, I'm {self.name}, studying {self.major} (ID: {self.student_id})"
 
     # Override to_string to include student-specific information
     @self.method
-    def to_string(self) -> str:
+    def to_string() -> str:
         """Return a string representation of the student."""
         return f"Student(name='{self.name}', age={self.age}, major='{self.major}', id='{self.student_id}')"
 
@@ -244,7 +244,7 @@ def WrongReturnType(self):
     self.value = 0
     
     @self.method
-    def count(self) -> str:  # Should return int, not str
+    def count() -> str:  # Should return int, not str
         return "5"
 ```
 

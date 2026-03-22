@@ -56,6 +56,15 @@ def classdef(super_cls=_ClassBase, *interfaces):
                         raise InterfaceError(
                             f"Class \"{self.__classname__}\" does not implement the interface \"{interface.__interface__.__interfacename__}\" (incorrectly defining the method \"{k}\")."
                         )
+            
+            # Add clone method to instance
+            def clone():
+                from copy import deepcopy
+                new_instance = MbpcSelf()
+                new_instance.__dict__ = deepcopy(self.__dict__)
+                return new_instance
+            
+            self.__dict__["clone"] = clone
             return self
 
         def method(f):
@@ -63,27 +72,24 @@ def classdef(super_cls=_ClassBase, *interfaces):
 
         mybase.__dict__ = super_cls.__dict__ | mybase.__dict__
         mybase.method = method
-        mybase.__mbpctype__ = "class" if super_cls.__mbpctype__ == _ClassBase else "struct"
+        mybase.__mbpctype__ = super_cls.__mbpctype__
         mybase.__interfaces__ = interfaces
 
         def initialize():
             for interface in reversed(interfaces):
-                for k in interface.__methods__.keys():
+                for k in interface.__interface__.methods.keys():
                     if not k in mybase.__dict__:
                         raise InterfaceError(
                             f"Class \"{deco_class.__name__}\" does not implement the interface \"{interface.__interface__.__interfacename__}\" (missing the static method \"{k}\")."
                         )
 
-                    if not signature(mybase.__dict__[k]) == interface.__methods__[k]:
+                    if not signature(mybase.__dict__[k]) == interface.__interface__.methods[k]:
                         raise InterfaceError(
                             f"Class \"{deco_class.__name__}\" does not implement the interface \"{interface.__interface__.__interfacename__}\" (incorrectly defining the static method \"{k}\")."
                         )
 
-        def clone():
-            from copy import deepcopy
-            return deepcopy(mybase.__dict__)
-
+        # Note: initialize() is available for manual validation but not called automatically
+        # because methods are added to mybase.__dict__ during decorator execution
         mybase.init = initialize
-        mybase.clone = clone
         return mybase
     return myclass
