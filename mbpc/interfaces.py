@@ -11,7 +11,3 @@ def Hashable(self):
 def Equatable(self):
     @self.method
     def equals(object) -> bool: ...
-
-
-class InterfaceError(Exception):
-    pass

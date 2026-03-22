@@ -1,5 +1,9 @@
 # `mbpc-improved`: Enhanced "Much Better Python Classes"
 
+> ⚠️ **Important Notice** ⚠️
+> - Versions 1.0.0 through 1.0.2 have been **permanently removed** from PyPI due to a documentation bug: The example code `from mbpc.interfaces import InterfaceError` was invalid, as `InterfaceError` was not properly exported. (Version 1.0.2 has already fixed this, but has a metadata bug like the e-mail address.)
+> - The `InterfaceError` class will not be exported in later versions, either. It is not recommended to use `InterfaceError` in your code. Please upgrade to **version 1.0.2 or later** for correct documentation and full functionality.
+
 ## Description
 
 `mbpc-improved` is an enhanced version of [MBPC](https://github.com/MintLF/MBPC/) ("Much Better Python Classes"), a powerful library that introduces advanced object-oriented programming capabilities to Python. It provides utilities for defining interfaces, classes, and structs in a more structured, type-safe manner, bringing some of the best features of statically-typed languages to Python's dynamic environment.
@@ -221,7 +225,6 @@ print(student.age)   # Output: 20
 ```python
 from mbpc.interfacedef import interfacedef
 from mbpc.classdef import classdef
-#from mbpc.interfaces import InterfaceError
 
 @interfacedef()
 def Countable(self):
