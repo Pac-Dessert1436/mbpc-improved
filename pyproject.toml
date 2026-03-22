@@ -4,16 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mbpc-improved"
-version = "1.0.2"
+version = "1.0.3"
 description = "Enhanced version of MBPC (Much Better Python Classes) for advanced OOP in Python"
 readme = "README.md"
 requires-python = ">=3.7"
 license = {text = "MIT"}
 authors = [
-    {name = "Pac-Dessert1436", email = "pac-dessert1436@example.com"}
+    {name = "Pac-Dessert1436", email = "benjamin_2001@qq.com"}
 ]
 maintainers = [
-    {name = "Pac-Dessert1436", email = "pac-dessert1436@example.com"}
+    {name = "Pac-Dessert1436", email = "benjamin_2001@qq.com"}
 ]
 keywords = [
     "oop",
